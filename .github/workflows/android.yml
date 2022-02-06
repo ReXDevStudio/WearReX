@@ -17,7 +17,7 @@ jobs:
         name: Get project name
         run: echo "::set-output name=PROJECT::$(cat project-to-build)"
       - name: Clone project
-        run: git clone --depth=1 ${{ steps.get-project.outputs.PROJECT }} project
+        run: git clone --depth=1 "https://github.com/XC-Qan/WearReX.git" project
       - name: Build the app
         working-directory: ./project
         run: |
