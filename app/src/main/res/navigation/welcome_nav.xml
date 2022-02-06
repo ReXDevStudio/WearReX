@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcome_nav"
+    app:startDestination="@id/welcome_screen">
+
+    <fragment
+        android:id="@+id/welcome_screen"
+        android:name="cn.rexwear.wearrex.WelcomeScreen"
+        android:label="fragment_welcome_screen"
+        tools:layout="@layout/fragment_welcome_screen" >
+        <action
+            android:id="@+id/action_welcome_screen_to_confirmLoginToRex"
+            app:destination="@id/confirmLoginToRex"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmLoginToRex"
+        android:name="cn.rexwear.wearrex.ConfirmLoginToRex"
+        android:label="ConfirmLoginToRex" >
+        <action
+            android:id="@+id/action_confirmLoginToRex_to_loginOrUp"
+            app:destination="@id/loginOrUp"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginOrUp"
+        android:name="cn.rexwear.wearrex.LoginOrUp"
+        android:label="LoginOrUp" >
+        <action
+            android:id="@+id/action_loginOrUp_to_login"
+            app:destination="@id/login"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="cn.rexwear.wearrex.Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_welcomeLoginFragment"
+            app:destination="@id/welcomeLoginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_login_to_loginOrUp"
+            app:destination="@id/loginOrUp"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeLoginFragment"
+        android:name="cn.rexwear.wearrex.WelcomeLoginFragment"
+        android:label="WelcomeLoginFragment" >
+        <argument
+            android:name="userBean"
+            app:argType="cn.rexwear.wearrex.beans.UserBean" />
+    </fragment>
+</navigation>
