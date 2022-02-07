@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginOrUp"
-        android:name="cn.rexwear.wearrex.LoginOrUp"
+        android:name="cn.rexwear.wearrex.LoginOrRegister"
         android:label="LoginOrUp" >
         <action
             android:id="@+id/action_loginOrUp_to_login"
