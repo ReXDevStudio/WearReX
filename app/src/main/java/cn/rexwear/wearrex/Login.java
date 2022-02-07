@@ -102,7 +102,7 @@ public class Login extends Fragment {
                     if(!TextUtils.isEmpty(user.getText()) && !TextUtils.isEmpty(password.getText())){
                         Login(user.getText().toString(), password.getText().toString());
                     }else{
-                        Toast.makeText(getContext(), "请正确填写ID和密码！", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -162,7 +162,7 @@ public class Login extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                textViewTitle.setText("校验失败，请重新登陆！");
+                                textViewTitle.setText("校验失败，请重新登陆");
                                 textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                                 ok.setEnabled(true);
                                 buOK.setEnabled(true);
@@ -209,7 +209,7 @@ public class Login extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    textViewTitle.setText("校验失败，请重新登陆！");
+                                    textViewTitle.setText("校验失败，请重新登陆");
                                     textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                                     textViewTitle.setCompoundDrawables(getResources().getDrawable(R.drawable.ic_baseline_close_24_pink), null, null, null);
                                     ok.setEnabled(true);
