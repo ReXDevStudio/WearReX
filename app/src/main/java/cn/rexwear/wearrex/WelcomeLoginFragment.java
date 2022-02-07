@@ -3,6 +3,7 @@ package cn.rexwear.wearrex;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -39,8 +40,8 @@ public class WelcomeLoginFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         TextView textView = getView().findViewById(R.id.textView2);
         if(!userBean.user.username.equals("")){
             textView.setText("欢迎!\n" + userBean.user.username);
