@@ -41,7 +41,7 @@
             android:gravity="center"
             android:text="欢迎!\nRechrd"
             android:textColor="#FFFFFF"
-            android:textSize="34sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -58,9 +58,10 @@
             android:src="@drawable/rex_logo"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
         <androidx.constraintlayout.widget.Guideline

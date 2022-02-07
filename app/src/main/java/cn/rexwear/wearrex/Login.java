@@ -122,6 +122,7 @@ public class Login extends Fragment {
                     password.setVisibility(View.INVISIBLE);
                     user.setVisibility(View.VISIBLE);
                     textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
+                    ok.setBackground(getResources().getDrawable(R.drawable.btn_round_light_blue));
                     textViewTitle.setText("输入用户名/邮箱");
                     textViewTitle2.setText("不支持ID登陆");
                     ok.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_arrow_forward_ios_24));
@@ -139,6 +140,7 @@ public class Login extends Fragment {
         buOK.setEnabled(false);
         password.setEnabled(false);
         textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
+        ok.setBackground(getResources().getDrawable(R.drawable.btn_round_light_blue));
         textViewTitle.setText("校验中...");
 
         OkHttpClient client = NetworkUtils.getInstance(getContext()).client;
@@ -176,6 +178,8 @@ public class Login extends Fragment {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 Log.d(TAG, "onResponse: " + response.code());
+
+                //https://github.com/XC-Qan/WearReX/issues/4
                 if(response.code() == 200){
                     //Log.d(TAG, "onResponse: " + response.body().string());
                     UserBean user = UserBean.objectFromData(response.body().string());
@@ -191,6 +195,7 @@ public class Login extends Fragment {
                                 @Override
                                 public void run() {
                                     textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
+                                    ok.setBackground(getResources().getDrawable(R.drawable.btn_round_light_blue));
                                     textViewTitle.setText("登录成功");
                                     NavController controller = Navigation.findNavController(getView());
                                     controller.navigate(R.id.action_login_to_welcomeLoginFragment, bundle);
@@ -201,24 +206,44 @@ public class Login extends Fragment {
 
                 }
                 else{
-
-
-                    mThreadPool.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    textViewTitle.setText("校验失败，请重新登陆");
-                                    textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
-                                    textViewTitle.setCompoundDrawables(getResources().getDrawable(R.drawable.ic_baseline_close_24_pink), null, null, null);
-                                    ok.setEnabled(true);
-                                    buOK.setEnabled(true);
-                                    password.setEnabled(true);
-                                }
-                            });
-                        }
-                    });
+                    if(response.code() == 400){
+                        mThreadPool.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        textViewTitle.setText("输入信息有误");
+                                        textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
+                                        //https://github.com/XC-Qan/WearReX/issues/5
+                                        ok.setBackground(getResources().getDrawable(R.drawable.btn_round_light_pink));
+                                        ok.setEnabled(true);
+                                        buOK.setEnabled(true);
+                                        password.setEnabled(true);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else{
+                        mThreadPool.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        textViewTitle.setText("校验失败，请重新登陆");
+                                        textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
+                                        //https://github.com/XC-Qan/WearReX/issues/5
+                                        ok.setBackground(getResources().getDrawable(R.drawable.btn_round_light_pink));
+                                        ok.setEnabled(true);
+                                        buOK.setEnabled(true);
+                                        password.setEnabled(true);
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
             }
         });

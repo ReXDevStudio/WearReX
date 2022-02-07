@@ -6,8 +6,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/btn_round_light_blue.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/btn_round_light_grey.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/btn_round_light_pink.xml" value="0.208" />
         <entry key="app/src/main/res/drawable/edittext_cursor_color.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.208" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1475" />
@@ -22,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_enter_email_register.xml" value="1.3527777777777779" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="1.3527777777777779" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.95118408203125" />
+        <entry key="app/src/main/res/layout/fragment_login_or_register.xml" value="1.0694444444444444" />
         <entry key="app/src/main/res/layout/fragment_login_or_up.xml" value="0.9459640502929688" />
         <entry key="app/src/main/res/layout/fragment_logup.xml" value="1.3527777777777779" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.7305555555555555" />
