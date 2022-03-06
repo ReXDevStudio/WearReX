@@ -4,14 +4,6 @@ import static cn.rexwear.wearrex.MainActivity.TAG;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -90,7 +89,7 @@ public class Login extends Fragment {
             ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
             buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.arrow_back, null));
         }else {
-            if (!TextUtils.isEmpty(user.getText()) && !TextUtils.isEmpty(password.getText())) {
+            if (!TextUtils.isEmpty(user.getText()) || !TextUtils.isEmpty(password.getText())) {
                 Login(user.getText().toString(), password.getText().toString());
             } else {
                 Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();

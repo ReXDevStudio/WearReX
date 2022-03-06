@@ -13,8 +13,8 @@
         <action
             android:id="@+id/action_welcome_screen_to_confirmLoginToRex"
             app:destination="@id/confirmLoginToRex"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
@@ -25,8 +25,8 @@
         <action
             android:id="@+id/action_confirmLoginToRex_to_loginOrUp"
             app:destination="@id/loginOrUp"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
@@ -37,8 +37,8 @@
         <action
             android:id="@+id/action_loginOrUp_to_login"
             app:destination="@id/login"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
@@ -49,17 +49,17 @@
         <action
             android:id="@+id/action_login_to_welcomeLoginFragment"
             app:destination="@id/welcomeLoginFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_login_to_loginOrUp"
             app:destination="@id/loginOrUp"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/welcomeLoginFragment"
