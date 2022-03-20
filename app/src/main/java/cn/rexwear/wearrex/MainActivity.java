@@ -3,7 +3,6 @@ package cn.rexwear.wearrex;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewTime = findViewById(R.id.time);
-        if (getUsername() != -1) {
+        if (getUserIsExperiment()) {
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
+        }
+        if (getUserID() != -1) {
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
             finish();
         }
@@ -41,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 读取用户信息
      */
-    private int getUsername() {
+    private int getUserID() {
         SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         int username = userInfo.getInt("userID", -1);//读取username
-        Log.i(TAG, "读取用户信息");
-        Log.i(TAG, "username:" + username);
         return username;
+    }
+
+    private boolean getUserIsExperiment() {
+        SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean bool = userInfo.getBoolean("isExperiment", false);
+        return bool;
     }
 }

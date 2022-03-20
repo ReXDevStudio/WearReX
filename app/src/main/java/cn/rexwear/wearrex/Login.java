@@ -87,7 +87,7 @@ public class Login extends Fragment {
             textViewTitle.setText("输入密码");
             textViewTitle2.setText("区分大小写");
             ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
-            buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.arrow_back, null));
+            buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_back_24, null));
         }else {
             if (!TextUtils.isEmpty(user.getText()) | !TextUtils.isEmpty(password.getText())) {
                 Login(user.getText().toString(), password.getText().toString());

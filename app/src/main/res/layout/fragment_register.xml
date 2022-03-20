@@ -138,8 +138,9 @@
             android:id="@+id/imageView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="4dp"
             android:src="@drawable/registerqr"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintBottom_toTopOf="@+id/goback"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -148,17 +149,16 @@
             android:id="@+id/goback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:background="@drawable/btn_round_light_blue"
             android:foreground="?attr/selectableItemBackground"
             android:foregroundGravity="bottom|center"
-            android:minWidth="52dp"
-            android:minHeight="52dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.76"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
