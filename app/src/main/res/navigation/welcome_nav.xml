@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/loginOrUp"
         android:name="cn.rexwear.wearrex.LoginOrRegister"
-        android:label="LoginOrUp" >
+        android:label="LoginOrUp">
         <action
             android:id="@+id/action_loginOrUp_to_login"
             app:destination="@id/login"
@@ -41,6 +41,13 @@
             app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_loginOrUp_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
+            app:popEnterAnim="@anim/animation_fade_in"
+            app:popExitAnim="@anim/animation_fade_out" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -56,17 +63,28 @@
         <action
             android:id="@+id/action_login_to_loginOrUp"
             app:destination="@id/loginOrUp"
-            app:enterAnim="@anim/animation_fade_in"
-            app:exitAnim="@anim/animation_fade_out"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/animation_fade_in_reverse"
+            app:exitAnim="@anim/animation_fade_out_reverse" />
     </fragment>
     <fragment
         android:id="@+id/welcomeLoginFragment"
         android:name="cn.rexwear.wearrex.WelcomeLoginFragment"
-        android:label="WelcomeLoginFragment" >
+        android:label="WelcomeLoginFragment">
         <argument
             android:name="userBean"
             app:argType="cn.rexwear.wearrex.beans.UserBean" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="cn.rexwear.wearrex.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_login"
+            app:destination="@id/login"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
+            app:popEnterAnim="@anim/animation_fade_in"
+            app:popExitAnim="@anim/animation_fade_out" />
     </fragment>
 </navigation>

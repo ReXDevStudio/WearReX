@@ -47,7 +47,7 @@ public class LoginOrRegister extends Fragment {
 
         register.setOnClickListener(view1 -> {
             NavController controller = Navigation.findNavController(view1);
-            controller.navigate(R.id.action_loginOrUp_to_login);
+            controller.navigate(R.id.action_loginOrUp_to_registerFragment);
         });
     }
 }

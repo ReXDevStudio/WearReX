@@ -89,7 +89,7 @@ public class Login extends Fragment {
             ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
             buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.arrow_back, null));
         }else {
-            if (!TextUtils.isEmpty(user.getText()) || !TextUtils.isEmpty(password.getText())) {
+            if (!TextUtils.isEmpty(user.getText()) | !TextUtils.isEmpty(password.getText())) {
                 Login(user.getText().toString(), password.getText().toString());
             } else {
                 Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();
