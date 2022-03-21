@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WearReX">
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.WelcomeActivity"
             android:exported="true"
             android:theme="@style/Theme.WelcomeScreen">
             <intent-filter>

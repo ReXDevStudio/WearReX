@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcome_screen"
-        android:name="cn.rexwear.wearrex.WelcomeScreen"
+        android:name="cn.rexwear.wearrex.fragments.welcome.WelcomeScreen"
         android:label="fragment_welcome_screen"
         tools:layout="@layout/fragment_welcome_screen" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/confirmLoginToRex"
-        android:name="cn.rexwear.wearrex.ConfirmLoginToRex"
+        android:name="cn.rexwear.wearrex.fragments.welcome.ConfirmLoginToRex"
         android:label="ConfirmLoginToRex" >
         <action
             android:id="@+id/action_confirmLoginToRex_to_loginOrUp"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginOrUp"
-        android:name="cn.rexwear.wearrex.LoginOrRegister"
+        android:name="cn.rexwear.wearrex.fragments.welcome.LoginOrRegister"
         android:label="LoginOrUp">
         <action
             android:id="@+id/action_loginOrUp_to_login"
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="cn.rexwear.wearrex.Login"
+        android:name="cn.rexwear.wearrex.fragments.welcome.Login"
         android:label="Login" >
         <action
             android:id="@+id/action_login_to_welcomeLoginFragment"
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeLoginFragment"
-        android:name="cn.rexwear.wearrex.WelcomeLoginFragment"
+        android:name="cn.rexwear.wearrex.fragments.welcome.WelcomeLoginFragment"
         android:label="WelcomeLoginFragment">
         <argument
             android:name="userBean"
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="cn.rexwear.wearrex.RegisterFragment"
+        android:name="cn.rexwear.wearrex.fragments.welcome.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
