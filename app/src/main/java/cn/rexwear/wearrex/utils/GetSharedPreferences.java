@@ -68,4 +68,13 @@ public class GetSharedPreferences {
         editor.commit();//提交修改
         Log.i(TAG, "保存用户信息成功");
     }
+
+    public void DeleteUserInfo() {
+        //SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        //SharedPreferences.Editor editor = userInfo.edit();//获取Editor
+        //得到Editor后，写入需要保存的数据
+        editor.remove("userID");
+        editor.remove("isExperiment");
+        editor.commit();//提交修改
+    }
 }

@@ -1,5 +1,6 @@
 package cn.rexwear.wearrex.utils;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
@@ -29,22 +30,16 @@ public class TimeThread extends Thread {
         } while (true);
     }
 
-    private Handler mHandler = new Handler() {
+    @SuppressLint("HandlerLeak")
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what) {
-                case 22:
+            if (msg.what == 22) {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                String date = sdf.format(new Date());
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                    String date = sdf.format(new Date());
-
-                    tvDate.setText(date);
-
-                    break;
-
-                default:
-                    break;
+                tvDate.setText(date);
             }
         }
     };
