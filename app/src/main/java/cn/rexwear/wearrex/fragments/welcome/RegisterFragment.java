@@ -36,10 +36,15 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageButton back = getView().findViewById(R.id.goback);
-        back.setOnClickListener(view1 -> {
+        ImageButton go = getView().findViewById(R.id.yes);
+        go.setOnClickListener(view1 -> {
             NavController controller = Navigation.findNavController(view1);
             controller.navigate(R.id.action_registerFragment_to_login);
+        });
+        ImageButton back = getView().findViewById(R.id.no);
+        back.setOnClickListener(view1 -> {
+            NavController controller = Navigation.findNavController(view1);
+            controller.navigateUp();
         });
     }
 }

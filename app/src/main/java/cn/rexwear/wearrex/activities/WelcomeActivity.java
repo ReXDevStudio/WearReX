@@ -12,7 +12,6 @@ import cn.rexwear.wearrex.utils.TimeThread;
 
 public class WelcomeActivity extends AppCompatActivity {
     public final static String TAG = "Wear ReX TAG";
-    private static final String PREFS_NAME = "WEAREXSHP";
     TextView textViewTime;
 
     @Override

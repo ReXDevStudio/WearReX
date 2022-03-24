@@ -2,6 +2,7 @@ package cn.rexwear.wearrex.fragments.welcome;
 
 import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -67,45 +69,46 @@ public class Login extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ok = getView().findViewById(R.id.yes);
-        buOK = getView().findViewById(R.id.no);
+        ok = requireView().findViewById(R.id.yes);
+        buOK = requireView().findViewById(R.id.no);
 
 
-        user = getView().findViewById(R.id.userName);
-        password = getView().findViewById(R.id.password);
+        user = requireView().findViewById(R.id.userName);
+        password = requireView().findViewById(R.id.password);
 
-        textViewTitle = getView().findViewById(R.id.loginTitle);
-        textViewTitle2 = getView().findViewById(R.id.loginTitle2);
+        textViewTitle = requireView().findViewById(R.id.loginTitle);
+        textViewTitle2 = requireView().findViewById(R.id.loginTitle2);
 
         ok.setOnClickListener(view1 -> {
-        if(!isEnteringPassword){
-            isEnteringPassword = true;
-            user.setVisibility(View.INVISIBLE);
-            password.setVisibility(View.VISIBLE);
-            textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
-            textViewTitle.setText("输入密码");
-            textViewTitle2.setText("区分大小写");
-            ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
-            buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_back_24, null));
-        }else {
-            if (!TextUtils.isEmpty(user.getText()) | !TextUtils.isEmpty(password.getText())) {
-                Login(user.getText().toString(), password.getText().toString());
-            } else {
-                Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();
+            if (!isEnteringPassword) {
+                isEnteringPassword = true;
+                user.setVisibility(View.INVISIBLE);
+                password.setVisibility(View.VISIBLE);
+                textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
+                textViewTitle.setText("输入密码");
+                textViewTitle2.setText("区分大小写");
+                ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
+                buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_back_24, null));
+            }else {
+                if (!TextUtils.isEmpty(user.getText()) | !TextUtils.isEmpty(password.getText())) {
+                    LoginWithOkHttp(user.getText().toString(), password.getText().toString());
+                } else {
+                    Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();
+                }
             }
-        }
         });
 
         buOK.setOnClickListener(view12 -> {
-            if(!isEnteringPassword){
+            if(!isEnteringPassword) {
 
                 NavController controller = Navigation.findNavController(view12);
-                controller.navigate(R.id.action_login_to_loginOrUp);
-            }
-            else{
+                controller.navigateUp();
+                //controller.navigate(R.id.action_login_to_loginOrUp);
+            } else{
                 isEnteringPassword = false;
                 password.setVisibility(View.INVISIBLE);
                 user.setVisibility(View.VISIBLE);
@@ -121,7 +124,7 @@ public class Login extends Fragment {
     }
 
 
-    void Login(String userName, String passWord){
+    void LoginWithOkHttp(String userName, String passWord) {
         Log.d(TAG, "Login: userName: " + userName + ", password: " + passWord);
 
         ok.setEnabled(false);
@@ -146,7 +149,7 @@ public class Login extends Fragment {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
-                mThreadPool.execute(() -> getActivity().runOnUiThread(() -> {
+                mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                     textViewTitle.setText("校验失败，请重新登陆");
                     textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                     ok.setEnabled(true);
@@ -162,24 +165,24 @@ public class Login extends Fragment {
                 //https://github.com/XC-Qan/WearReX/issues/4
                 if(response.code() == 200){
                     //Log.d(TAG, "onResponse: " + response.body().string());
-                    UserBean user = UserBean.objectFromData(response.body().string());
+                    UserBean user = UserBean.objectFromData(Objects.requireNonNull(response.body()).string());
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("userBean", user);
                     Log.d(TAG, "onResponse: 登录成功，欢迎" + user.user.username);
-                    
-                    mThreadPool.execute(() -> getActivity().runOnUiThread(() -> {
+
+                    mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                         textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
                         ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
                         textViewTitle.setText("登录成功");
-                        NavController controller = Navigation.findNavController(getView());
+                        NavController controller = Navigation.findNavController(requireView());
                         controller.navigate(R.id.action_login_to_welcomeLoginFragment, bundle);
                     }));
 
                 }
                 else{
                     if(response.code() == 400){
-                        mThreadPool.execute(() -> getActivity().runOnUiThread(() -> {
+                        mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                             textViewTitle.setText("输入信息有误");
                             textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                             //https://github.com/XC-Qan/WearReX/issues/5
@@ -190,7 +193,7 @@ public class Login extends Fragment {
                         }));
                     }
                     else{
-                        mThreadPool.execute(() -> getActivity().runOnUiThread(() -> {
+                        mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                             textViewTitle.setText("校验失败，请重新登陆");
                             textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                             //https://github.com/XC-Qan/WearReX/issues/5

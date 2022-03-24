@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import cn.rexwear.wearrex.R;
 public class LoginOrRegister extends Fragment {
     ImageButton login;
     ImageButton register;
+    TextView back;
 
     public LoginOrRegister() {
         // Required empty public constructor
@@ -39,17 +41,16 @@ public class LoginOrRegister extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        login = getView().findViewById(R.id.yes);
-        register = getView().findViewById(R.id.no);
+        login = requireView().findViewById(R.id.yes);
+        register = requireView().findViewById(R.id.no);
+        back = requireView().findViewById(R.id.back);
 
-        login.setOnClickListener(view1 -> {
-            NavController controller = Navigation.findNavController(view1);
-            controller.navigate(R.id.action_loginOrUp_to_login);
-        });
+        NavController controller = Navigation.findNavController(requireView());
 
-        register.setOnClickListener(view1 -> {
-            NavController controller = Navigation.findNavController(view1);
-            controller.navigate(R.id.action_loginOrUp_to_registerFragment);
-        });
+        login.setOnClickListener(view1 -> controller.navigate(R.id.action_loginOrUp_to_login));
+
+        register.setOnClickListener(view1 -> controller.navigate(R.id.action_loginOrUp_to_registerFragment));
+
+        back.setOnClickListener(view1 -> controller.navigateUp());
     }
 }

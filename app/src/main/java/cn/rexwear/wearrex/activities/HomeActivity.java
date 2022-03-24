@@ -12,7 +12,6 @@ import cn.rexwear.wearrex.utils.GetSharedPreferences;
 import cn.rexwear.wearrex.utils.TimeThread;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final String PREFS_NAME = "WEAREXSHP";
     ActivityHomeBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

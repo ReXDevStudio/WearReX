@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class TimeThread extends Thread {
     public TextView tvDate;
-    private int msgKey1 = 22;
 
     public TimeThread(TextView tvDate) {
         this.tvDate = tvDate;
@@ -22,7 +21,7 @@ public class TimeThread extends Thread {
             try {
                 Thread.sleep(1000);
                 Message msg = new Message();
-                msg.what = msgKey1;
+                msg.what = 22;
                 mHandler.sendMessage(msg);
             } catch (InterruptedException e) {
                 e.printStackTrace();

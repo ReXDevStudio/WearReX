@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.208" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1135" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_small.xml" value="0.203" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1475" />
