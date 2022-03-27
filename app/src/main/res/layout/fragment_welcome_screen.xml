@@ -22,28 +22,10 @@
             android:src="@drawable/ic_baseline_arrow_forward_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/exit"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-
-
-        <ImageButton
-            android:id="@+id/exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_round_light_grey"
-            android:minWidth="52dp"
-            android:minHeight="52dp"
-            android:src="@drawable/ic_baseline_close_24"
-            android:foreground="?attr/selectableItemBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/go"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
             tools:ignore="SpeakableTextPresentCheck" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
