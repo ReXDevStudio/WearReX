@@ -24,6 +24,7 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         android:text="加载中"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
