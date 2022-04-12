@@ -1,15 +1,10 @@
 package cn.rexwear.wearrex.fragments.welcome;
 
-import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +14,12 @@ import androidx.navigation.Navigation;
 
 import cn.rexwear.wearrex.R;
 import cn.rexwear.wearrex.activities.HomeActivity;
+import cn.rexwear.wearrex.databinding.FragmentConfirmLoginToRexBinding;
+import cn.rexwear.wearrex.utils.GetSharedPreferences;
 
 public class ConfirmLoginToRex extends Fragment {
+    FragmentConfirmLoginToRexBinding binding;
 
-    ImageButton ok;
-    ImageButton no;
     private static final String PREFS_NAME = "WEAREXSHP";
 
 
@@ -40,41 +36,24 @@ public class ConfirmLoginToRex extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_confirm_login_to_rex, container, false);
+        binding = FragmentConfirmLoginToRexBinding.inflate(inflater);
+        return binding.getRoot();
+        //return inflater.inflate(R.layout.fragment_confirm_login_to_rex, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        no = getView().findViewById(R.id.no);
-        ok = getView().findViewById(R.id.yes);
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveUserIsExperiment(true);
-                Intent intent = new Intent(getContext(), HomeActivity.class);
-                getActivity().startActivity(intent);
-                getActivity().finish();
-            }
+        NavController controller = Navigation.findNavController(requireView());
+        binding.login.setOnClickListener(view1 -> controller.navigate(R.id.action_confirmLoginToRex_to_login));
+        binding.register.setOnClickListener(view1 -> controller.navigate(R.id.action_confirmLoginToRex_to_registerFragment));
+        binding.tourist.setOnClickListener(view1 -> {
+            GetSharedPreferences.getInstance(requireContext()).saveUserIsExperiment(true);
+            startActivity(new Intent(getActivity(), HomeActivity.class));
+            getActivity().finish();
         });
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveUserIsExperiment(false);
-                NavController controller = Navigation.findNavController(view);
-                controller.navigate(R.id.action_confirmLoginToRex_to_loginOrUp);
-            }
-        });
     }
 
-    private void saveUserIsExperiment(boolean bool) {
-        SharedPreferences userInfo = getActivity().getSharedPreferences(PREFS_NAME, getActivity().MODE_PRIVATE);
-        SharedPreferences.Editor editor = userInfo.edit();//获取Editor
-        //得到Editor后，写入需要保存的数据
-        editor.putBoolean("isExperiment", bool);
-        editor.commit();//提交修改
-        Log.i(TAG, "保存用户信息成功");
-    }
+
 }

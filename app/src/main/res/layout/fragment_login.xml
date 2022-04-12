@@ -57,6 +57,7 @@
             android:fontFamily="@font/roboto"
             android:text="输入用户名/邮箱"
             android:textColor="#90CAF9"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/loginTitle2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

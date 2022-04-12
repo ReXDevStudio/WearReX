@@ -23,27 +23,15 @@
         android:name="cn.rexwear.wearrex.fragments.welcome.ConfirmLoginToRex"
         android:label="ConfirmLoginToRex" >
         <action
-            android:id="@+id/action_confirmLoginToRex_to_loginOrUp"
-            app:destination="@id/loginOrUp"
-            app:enterAnim="@anim/animation_fade_in"
-            app:exitAnim="@anim/animation_fade_out"
-            app:popEnterAnim="@anim/animation_fade_in_reverse"
-            app:popExitAnim="@anim/animation_fade_out_reverse" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginOrUp"
-        android:name="cn.rexwear.wearrex.fragments.welcome.LoginOrRegister"
-        android:label="LoginOrUp">
-        <action
-            android:id="@+id/action_loginOrUp_to_login"
-            app:destination="@id/login"
-            app:enterAnim="@anim/animation_fade_in"
-            app:exitAnim="@anim/animation_fade_out"
-            app:popEnterAnim="@anim/animation_fade_in_reverse"
-            app:popExitAnim="@anim/animation_fade_out_reverse" />
-        <action
-            android:id="@+id/action_loginOrUp_to_registerFragment"
+            android:id="@+id/action_confirmLoginToRex_to_registerFragment"
             app:destination="@id/registerFragment"
+            app:enterAnim="@anim/animation_fade_in"
+            app:exitAnim="@anim/animation_fade_out"
+            app:popEnterAnim="@anim/animation_fade_in_reverse"
+            app:popExitAnim="@anim/animation_fade_out_reverse" />
+        <action
+            android:id="@+id/action_confirmLoginToRex_to_login"
+            app:destination="@id/login"
             app:enterAnim="@anim/animation_fade_in"
             app:exitAnim="@anim/animation_fade_out"
             app:popEnterAnim="@anim/animation_fade_in_reverse"
@@ -58,13 +46,6 @@
             app:destination="@id/welcomeLoginFragment"
             app:enterAnim="@anim/animation_fade_in"
             app:exitAnim="@anim/animation_fade_out"
-            app:popEnterAnim="@anim/animation_fade_in_reverse"
-            app:popExitAnim="@anim/animation_fade_out_reverse" />
-        <action
-            android:id="@+id/action_login_to_loginOrUp"
-            app:destination="@id/loginOrUp"
-            app:enterAnim="@anim/animation_fade_in_reverse"
-            app:exitAnim="@anim/animation_fade_out_reverse"
             app:popEnterAnim="@anim/animation_fade_in_reverse"
             app:popExitAnim="@anim/animation_fade_out_reverse" />
     </fragment>

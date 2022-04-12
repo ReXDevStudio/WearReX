@@ -77,4 +77,9 @@ public class GetSharedPreferences {
         editor.remove("isExperiment");
         editor.commit();//提交修改
     }
+
+    public void saveUserIsExperiment(boolean bool) {
+        editor.putBoolean("isExperiment", bool);
+        editor.commit();//提交修改
+    }
 }

@@ -18,7 +18,6 @@ import cn.rexwear.wearrex.R;
 public class WelcomeScreen extends Fragment {
 
     ImageButton go;
-    ImageButton exit;
 
     public WelcomeScreen() {
         // Required empty public constructor
@@ -43,18 +42,11 @@ public class WelcomeScreen extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         go = getView().findViewById(R.id.go);
-        exit = getView().findViewById(R.id.exit);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavController controller = Navigation.findNavController(view);
                 controller.navigate(R.id.action_welcome_screen_to_confirmLoginToRex);
-            }
-        });
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().finish();
             }
         });
     }
