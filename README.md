@@ -1,3 +1,2 @@
 # WearReX
-[![Build status](https://build.appcenter.ms/v0.1/apps/40acf408-5849-418b-8fbb-43aa7dfc588d/branches/master/badge)](https://appcenter.ms)<br>
-WearRex Android App. See rexwear.cn
+[![Gitter](https://badges.gitter.im/rex-community/community.svg)](https://gitter.im/rex-community/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)WearRex Android App. See rexwear.cn
