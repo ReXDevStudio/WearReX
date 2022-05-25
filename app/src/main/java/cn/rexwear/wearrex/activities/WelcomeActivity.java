@@ -7,12 +7,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.rexwear.wearrex.R;
-import cn.rexwear.wearrex.utils.GetSharedPreferences;
+import cn.rexwear.wearrex.utils.SharedPreferencesUtils;
 import cn.rexwear.wearrex.utils.TimeThread;
 
 public class WelcomeActivity extends AppCompatActivity {
     public final static String TAG = "Wear ReX TAG";
     TextView textViewTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,11 @@ public class WelcomeActivity extends AppCompatActivity {
         textViewTime = findViewById(R.id.time);
         TimeThread timeThread = new TimeThread(textViewTime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
-        if (GetSharedPreferences.getUserIsExperiment()) {
+        if (SharedPreferencesUtils.getUserIsExperiment()) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }
-        if (GetSharedPreferences.getUserID() != -1) {
+        if (SharedPreferencesUtils.getUserID() != -1) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }

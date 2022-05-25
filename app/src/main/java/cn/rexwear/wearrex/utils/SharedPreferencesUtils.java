@@ -16,7 +16,7 @@ import cn.rexwear.wearrex.Application;
  * 给！爷！写！注！释！
  */
 
-public class GetSharedPreferences {
+public class SharedPreferencesUtils {
     public static final String PREFS_NAME = "cn.rexwear.sharedpreferences";
     private static final SharedPreferences preferences = Application.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     private static final SharedPreferences.Editor editor = preferences.edit();

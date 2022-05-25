@@ -8,13 +8,31 @@ import okhttp3.RequestBody;
 
 public class NetworkUtils {
 
+    final static String TAG = "NetworkUtils TAG";
     private static String domain = "https://rexwear.cn/api"; //主域名
 
     public static void setDomain(String domain) {
         NetworkUtils.domain = domain;
     }
 
-    final static String TAG = "NetworkUtils TAG";
+    /**
+     * GET网络请求
+     *
+     * @param url      url路径
+     * @param callback 网络请求回调
+     */
+    public static void getUrl(String url, Callback callback) {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        Request request = new Request.Builder()
+                .url(domain + url)
+                .get()
+                .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
+                .addHeader("XF-API-Key", "x3KEr7kI-ZOrNOjN46HAkB0oGgqHkXLt")
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
 
     /**
      * Post网络请求

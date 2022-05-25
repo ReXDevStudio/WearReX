@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import cn.rexwear.wearrex.R;
 import cn.rexwear.wearrex.activities.HomeActivity;
 import cn.rexwear.wearrex.beans.UserBean;
-import cn.rexwear.wearrex.utils.GetSharedPreferences;
+import cn.rexwear.wearrex.utils.SharedPreferencesUtils;
 
 public class WelcomeLoginFragment extends Fragment {
 
@@ -57,7 +57,7 @@ public class WelcomeLoginFragment extends Fragment {
         }
 
         go.setOnClickListener(view1 -> {
-            GetSharedPreferences.saveUserInfo(userBean.user.userId);
+            SharedPreferencesUtils.saveUserInfo(userBean.user.userId);
             startActivity(new Intent(getContext(), HomeActivity.class));
             requireActivity().finish();
         });
