@@ -58,9 +58,9 @@ public class WelcomeLoginFragment extends Fragment {
         }
 
         go.setOnClickListener(view1 -> {
-            GetSharedPreferences.getInstance(getContext()).saveUserInfo(userBean.user.userId);
+            GetSharedPreferences.saveUserInfo(userBean.user.userId);
             startActivity(new Intent(getContext(), HomeActivity.class));
-            getActivity().finish();
+            requireActivity().finish();
         });
     }
 

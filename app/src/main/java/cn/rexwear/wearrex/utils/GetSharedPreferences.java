@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import cn.rexwear.wearrex.Application;
+
 /**
  * Created by XC-Qan on 2022/3/21.
  * I'm very cute so please be nice to my code!
@@ -15,52 +17,35 @@ import android.util.Log;
  */
 
 public class GetSharedPreferences {
-    //private static volatile GetSharedPreferences instance = null;
-
-
-    //final static String PREFS_NAME = "WEAREXSHP";
-
-    public static final String PREFS_NAME = "WEAREXSHP";
+    public static final String PREFS_NAME = "cn.rexwear.sharedpreferences";
     private static GetSharedPreferences instance;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+    private static final SharedPreferences preferences = Application.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+    private static final SharedPreferences.Editor editor = preferences.edit();
 
-    private GetSharedPreferences(Context context) {
-        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        editor = preferences.edit();
-    }
-
-    public static GetSharedPreferences getInstance(Context context) {
-        if (instance == null) {
-            synchronized (GetSharedPreferences.class) {
-                if (instance == null) {
-                    instance = new GetSharedPreferences(context);
-                }
-            }
-        }
-        return instance;
-    }
-
-    /*public static GetSharedPreferences getInstance(Context context) {
-        if(instance == null)
-            instance = new GetSharedPreferences(context.getApplicationContext());
-        return instance;
-    }*/
-
-
-    public int getUserID() {
+    /**
+     * 获取储存在本地的userID
+     */
+    public static int getUserID() {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int username = preferences.getInt("userID", -1);//读取username
-        return username;
+        int userID = preferences.getInt("userID", -1);//读取username
+        return userID;
     }
 
-    public boolean getUserIsExperiment() {
+    /**
+     * 获取用户是否为游客登录
+     */
+    public static boolean getUserIsExperiment() {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean bool = preferences.getBoolean("isExperiment", false);
         return bool;
     }
 
-    public void saveUserInfo(int userID) {
+    /**
+     * 将获取到的userID储存在本地
+     *
+     * @param userID
+     */
+    public static void saveUserInfo(int userID) {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         //SharedPreferences.Editor editor = userInfo.edit();//获取Editor
         //得到Editor后，写入需要保存的数据
@@ -69,7 +54,10 @@ public class GetSharedPreferences {
         Log.i(TAG, "保存用户信息成功");
     }
 
-    public void DeleteUserInfo() {
+    /**
+     * 删除储存在本地的userID
+     */
+    public static void DeleteUserInfo() {
         //SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         //SharedPreferences.Editor editor = userInfo.edit();//获取Editor
         //得到Editor后，写入需要保存的数据
@@ -78,7 +66,12 @@ public class GetSharedPreferences {
         editor.commit();//提交修改
     }
 
-    public void saveUserIsExperiment(boolean bool) {
+    /**
+     * 本地设置用户是否为游客登录
+     *
+     * @param bool
+     */
+    public static void saveUserIsExperiment(boolean bool) {
         editor.putBoolean("isExperiment", bool);
         editor.commit();//提交修改
     }

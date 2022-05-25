@@ -1,5 +1,8 @@
 package cn.rexwear.wearrex;
 
+
+import android.content.Context;
+
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
@@ -13,10 +16,16 @@ import com.microsoft.appcenter.crashes.Crashes;
  */
 
 public class Application extends android.app.Application {
+    static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        AppCenter.start(this, "2f44bd31-a615-439b-8560-8386b74f29bd",
-                Analytics.class, Crashes.class);
+        AppCenter.start(this, "2f44bd31-a615-439b-8560-8386b74f29bd", Analytics.class, Crashes.class);
+        context = getApplicationContext();
     }
 }

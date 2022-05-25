@@ -48,7 +48,7 @@ public class ConfirmLoginToRex extends Fragment {
         binding.login.setOnClickListener(view1 -> controller.navigate(R.id.action_confirmLoginToRex_to_login));
         binding.register.setOnClickListener(view1 -> controller.navigate(R.id.action_confirmLoginToRex_to_registerFragment));
         binding.tourist.setOnClickListener(view1 -> {
-            GetSharedPreferences.getInstance(requireContext()).saveUserIsExperiment(true);
+            GetSharedPreferences.saveUserIsExperiment(true);
             startActivity(new Intent(getActivity(), HomeActivity.class));
             getActivity().finish();
         });

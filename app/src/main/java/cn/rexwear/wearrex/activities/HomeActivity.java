@@ -20,18 +20,18 @@ public class HomeActivity extends AppCompatActivity {
         TimeThread timeThread = new TimeThread(binding.hometime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
 
-        if (GetSharedPreferences.getInstance(HomeActivity.this).getUserID() == -1) {
-            if (GetSharedPreferences.getInstance(HomeActivity.this).getUserIsExperiment()) {
+        if (GetSharedPreferences.getUserID() == -1) {       //获取登录状态
+            if (GetSharedPreferences.getUserIsExperiment()) {       //获取是否为游客
                 binding.logout.setText("登录");
             } else {
-                startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));
+                startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));        //打开登录activity
                 finish();
             }
         }
 
         binding.logout.setOnClickListener(view -> {
-            GetSharedPreferences.getInstance(HomeActivity.this).DeleteUserInfo();
-            startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));
+            GetSharedPreferences.DeleteUserInfo();      //删除userID
+            startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));        //打开登录activity
             finish();
         });
     }

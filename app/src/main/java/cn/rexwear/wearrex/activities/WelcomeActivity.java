@@ -21,11 +21,11 @@ public class WelcomeActivity extends AppCompatActivity {
         textViewTime = findViewById(R.id.time);
         TimeThread timeThread = new TimeThread(textViewTime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
-        if (GetSharedPreferences.getInstance(WelcomeActivity.this).getUserIsExperiment()) {
+        if (GetSharedPreferences.getUserIsExperiment()) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }
-        if (GetSharedPreferences.getInstance(WelcomeActivity.this).getUserID() != -1) {
+        if (GetSharedPreferences.getUserID() != -1) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }

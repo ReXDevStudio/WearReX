@@ -33,8 +33,6 @@ import cn.rexwear.wearrex.utils.NetworkUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
@@ -134,21 +132,15 @@ public class Login extends Fragment {
         ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
         textViewTitle.setText("校验中...");
 
-        OkHttpClient client = NetworkUtils.getInstance(getContext()).client;
         RequestBody body = new FormBody.Builder()
                 .add("login", userName)
                 .add("password", passWord)
                 .build();
-        Request request = new Request.Builder()
-                .url("https://rexwear.cn/index.php?api/auth")
-                .post(body)
-                .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
-                .addHeader("XF-API-Key", "x3KEr7kI-ZOrNOjN46HAkB0oGgqHkXLt")
-                .build();
-        client.newCall(request).enqueue(new Callback() {
+
+        NetworkUtils.postUrl("/auth", body, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                Log.d(TAG, "onFailure: " + e.getMessage());
                 mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                     textViewTitle.setText("校验失败，请重新登陆");
                     textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
@@ -181,6 +173,7 @@ public class Login extends Fragment {
 
                 }
                 else{
+                    Log.d(TAG, "onResponse: 登录失败  " + Objects.requireNonNull(response.body()).string());
                     if(response.code() == 400){
                         mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                             textViewTitle.setText("输入信息有误");
