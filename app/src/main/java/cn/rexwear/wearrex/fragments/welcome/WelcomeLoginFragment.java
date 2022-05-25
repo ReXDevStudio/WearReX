@@ -22,7 +22,6 @@ import cn.rexwear.wearrex.beans.UserBean;
 import cn.rexwear.wearrex.utils.GetSharedPreferences;
 
 public class WelcomeLoginFragment extends Fragment {
-    private static final String PREFS_NAME = "WEAREXSHP";
 
     UserBean userBean;
     public WelcomeLoginFragment() {
@@ -34,7 +33,7 @@ public class WelcomeLoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userBean = (UserBean) getArguments().getSerializable("userBean");
+        userBean = (UserBean) requireArguments().getSerializable("userBean");
     }
 
     @Override
@@ -47,12 +46,12 @@ public class WelcomeLoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = getView().findViewById(R.id.textView2);
+        TextView textView = requireView().findViewById(R.id.textView2);
         ImageButton go = view.findViewById(R.id.go);
         if (!userBean.user.username.equals("")) {
             textView.setText("欢迎!\n" + userBean.user.username);
         }
-        ImageView imageView = getView().findViewById(R.id.imageView);
+        ImageView imageView = requireView().findViewById(R.id.imageView);
         if (userBean.user.avatarUrls.getM() != null) {
             Glide.with(this).load(Uri.parse(userBean.user.avatarUrls.getH())).circleCrop().placeholder(R.drawable.ic_baseline_account_circle_24).into(imageView);
         }

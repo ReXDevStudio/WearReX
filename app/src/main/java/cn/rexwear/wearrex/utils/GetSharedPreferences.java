@@ -18,7 +18,6 @@ import cn.rexwear.wearrex.Application;
 
 public class GetSharedPreferences {
     public static final String PREFS_NAME = "cn.rexwear.sharedpreferences";
-    private static GetSharedPreferences instance;
     private static final SharedPreferences preferences = Application.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     private static final SharedPreferences.Editor editor = preferences.edit();
 
@@ -27,8 +26,7 @@ public class GetSharedPreferences {
      */
     public static int getUserID() {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int userID = preferences.getInt("userID", -1);//读取username
-        return userID;
+        return preferences.getInt("userID", -1);
     }
 
     /**
@@ -36,14 +34,11 @@ public class GetSharedPreferences {
      */
     public static boolean getUserIsExperiment() {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        boolean bool = preferences.getBoolean("isExperiment", false);
-        return bool;
+        return preferences.getBoolean("isExperiment", false);
     }
 
     /**
      * 将获取到的userID储存在本地
-     *
-     * @param userID
      */
     public static void saveUserInfo(int userID) {
         //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -69,7 +64,6 @@ public class GetSharedPreferences {
     /**
      * 本地设置用户是否为游客登录
      *
-     * @param bool
      */
     public static void saveUserIsExperiment(boolean bool) {
         editor.putBoolean("isExperiment", bool);

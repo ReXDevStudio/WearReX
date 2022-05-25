@@ -33,16 +33,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     //https://github.com/XC-Qan/WearReX/issues/6
-/*    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK ) {
-            //do something.
-            return true;
-        } else {
-            return super.dispatchKeyEvent(event);
-        }
-    }*/
-
 
 
 }

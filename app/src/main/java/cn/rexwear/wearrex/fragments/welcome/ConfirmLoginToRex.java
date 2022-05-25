@@ -20,8 +20,6 @@ import cn.rexwear.wearrex.utils.GetSharedPreferences;
 public class ConfirmLoginToRex extends Fragment {
     FragmentConfirmLoginToRexBinding binding;
 
-    private static final String PREFS_NAME = "WEAREXSHP";
-
 
     public ConfirmLoginToRex() {
         // Required empty public constructor
@@ -33,7 +31,7 @@ public class ConfirmLoginToRex extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentConfirmLoginToRexBinding.inflate(inflater);
@@ -50,7 +48,7 @@ public class ConfirmLoginToRex extends Fragment {
         binding.tourist.setOnClickListener(view1 -> {
             GetSharedPreferences.saveUserIsExperiment(true);
             startActivity(new Intent(getActivity(), HomeActivity.class));
-            getActivity().finish();
+            requireActivity().finish();
         });
 
     }

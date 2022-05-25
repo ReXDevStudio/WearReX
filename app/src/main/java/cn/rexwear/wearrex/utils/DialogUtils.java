@@ -1,11 +1,11 @@
 package cn.rexwear.wearrex.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 
+import cn.rexwear.wearrex.Application;
 import cn.rexwear.wearrex.R;
 
 /**
@@ -17,20 +17,9 @@ import cn.rexwear.wearrex.R;
  */
 
 public class DialogUtils {
-    @SuppressLint("StaticFieldLeak")
-    private static DialogUtils instance;
-    Context context;
+    Context context = Application.getContext();
 
-    public DialogUtils(Context context) {
-        this.context = context;
-    }
 
-    public static DialogUtils getInstance(Context context) {
-        if (instance == null) {
-            instance = new DialogUtils(context);
-        }
-        return instance;
-    }
 
     /**
      * @return alertDialog对话框Object

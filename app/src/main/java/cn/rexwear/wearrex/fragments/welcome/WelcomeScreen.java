@@ -41,13 +41,10 @@ public class WelcomeScreen extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        go = getView().findViewById(R.id.go);
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController controller = Navigation.findNavController(view);
-                controller.navigate(R.id.action_welcome_screen_to_confirmLoginToRex);
-            }
+        go = requireActivity().findViewById(R.id.go);
+        go.setOnClickListener(view1 -> {
+            NavController controller = Navigation.findNavController(view1);
+            controller.navigate(R.id.action_welcome_screen_to_confirmLoginToRex);
         });
     }
 }

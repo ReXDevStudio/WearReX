@@ -1,6 +1,7 @@
 package cn.rexwear.wearrex;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.microsoft.appcenter.AppCenter;
@@ -16,6 +17,7 @@ import com.microsoft.appcenter.crashes.Crashes;
  */
 
 public class Application extends android.app.Application {
+    @SuppressLint("StaticFieldLeak")
     static Context context;
 
     public static Context getContext() {
