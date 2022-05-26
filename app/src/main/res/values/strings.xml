@@ -13,7 +13,7 @@
     <string name="welcomeUseText">Welcome to\nWear ReX</string>
     <string name="touristText">Tourist</string>
     <string name="logout">Log out</string>
-    <string name="failedToFetchUsernameText">Failed to fetch username!</string>
+    <string name="failedToFetchUsernameText">Failed to fetch username</string>
     <string name="enterPasswordText">Enter password</string>
     <string name="caseSensitiveText">Case sensitive</string>
     <string name="fillTheInfosCorrectlyText">Please fill in the ID and password correctly</string>
