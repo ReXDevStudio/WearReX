@@ -49,7 +49,8 @@ public class WelcomeLoginFragment extends Fragment {
         TextView textView = requireView().findViewById(R.id.textView2);
         ImageButton go = view.findViewById(R.id.go);
         if (!userBean.user.username.equals("")) {
-            textView.setText("欢迎!\n" + userBean.user.username);
+            String str = this.getString(R.string.welcomeText) + userBean.user.username;
+            textView.setText(str);
         }
         ImageView imageView = requireView().findViewById(R.id.imageView);
         if (userBean.user.avatarUrls.getM() != null) {

@@ -1,14 +1,24 @@
 <resources>
     <string name="app_name">Wear ReX</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="loadingText">Loading…</string>
+    <string name="currentUserTextWithColons">Current user:</string>
+    <string name="confirmLoginToRexText">Login with ReX ID\nfor the best experience</string>
+    <string name="loginText">Login via ReX ID</string>
+    <string name="registerText">Register ReX ID</string>
+    <string name="touristModeText">Browse Only</string>
+    <string name="enterEmailText">Enter your username/email</string>
+    <string name="noIDLoginText">Digital ID login is not supported</string>
+    <string name="scanQRCodeText">Scan the QR code to register</string>
+    <string name="welcomeText">Welcome\n</string>
+    <string name="welcomeUseText">Welcome to\nWear ReX</string>
+    <string name="touristText">Tourist</string>
+    <string name="logout">Log out</string>
+    <string name="failedToFetchUsernameText">Failed to fetch username!</string>
+    <string name="enterPasswordText">Enter password</string>
+    <string name="caseSensitiveText">Case sensitive</string>
+    <string name="fillTheInfosCorrectlyText">Please fill in the ID and password correctly</string>
+    <string name="verifyingText">In verification…</string>
+    <string name="verifyFailed">Verification failed, please log in again</string>
+    <string name="loginSuccessful">Login successful</string>
+    <string name="incorrectInputText">Incorrect information entered</string>
 </resources>

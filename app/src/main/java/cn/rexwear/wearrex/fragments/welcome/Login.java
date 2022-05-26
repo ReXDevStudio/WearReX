@@ -2,7 +2,6 @@ package cn.rexwear.wearrex.fragments.welcome;
 
 import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -67,7 +66,6 @@ public class Login extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -87,15 +85,15 @@ public class Login extends Fragment {
                 user.setVisibility(View.INVISIBLE);
                 password.setVisibility(View.VISIBLE);
                 textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
-                textViewTitle.setText("输入密码");
-                textViewTitle2.setText("区分大小写");
+                textViewTitle.setText(R.string.enterPasswordText);
+                textViewTitle2.setText(R.string.caseSensitiveText);
                 ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_check_24, null));
                 buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_back_24, null));
             }else {
-                if (!TextUtils.isEmpty(user.getText()) | !TextUtils.isEmpty(password.getText())) {
+                if (!TextUtils.isEmpty(user.getText()) || !TextUtils.isEmpty(password.getText())) {
                     LoginWithOkHttp(user.getText().toString(), password.getText().toString());
                 } else {
-                    Toast.makeText(getContext(), "请正确填写ID和密码", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), Login.this.getString(R.string.fillTheInfosCorrectlyText), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -106,14 +104,14 @@ public class Login extends Fragment {
                 NavController controller = Navigation.findNavController(view12);
                 controller.navigateUp();
                 //controller.navigate(R.id.action_login_to_loginOrUp);
-            } else{
+            } else {
                 isEnteringPassword = false;
                 password.setVisibility(View.INVISIBLE);
                 user.setVisibility(View.VISIBLE);
                 textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
                 ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
-                textViewTitle.setText("输入用户名/邮箱");
-                textViewTitle2.setText("不支持ID登陆");
+                textViewTitle.setText(R.string.enterEmailText);
+                textViewTitle2.setText(R.string.noIDLoginText);
                 ok.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_forward_ios_24, null));
                 buOK.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_close_24, null));
             }
@@ -130,7 +128,7 @@ public class Login extends Fragment {
         password.setEnabled(false);
         textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
         ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
-        textViewTitle.setText("校验中...");
+        textViewTitle.setText(R.string.verifyingText);
 
         RequestBody body = new FormBody.Builder()
                 .add("login", userName)
@@ -142,7 +140,7 @@ public class Login extends Fragment {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.d(TAG, "onFailure: " + e.getMessage());
                 mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
-                    textViewTitle.setText("校验失败，请重新登陆");
+                    textViewTitle.setText(R.string.verifyFailed);
                     textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                     ok.setEnabled(true);
                     buOK.setEnabled(true);
@@ -166,7 +164,7 @@ public class Login extends Fragment {
                     mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                         textViewTitle.setTextColor(Color.parseColor("#90CAF9"));
                         ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
-                        textViewTitle.setText("登录成功");
+                        textViewTitle.setText(R.string.loginSuccessful);
                         NavController controller = Navigation.findNavController(requireView());
                         controller.navigate(R.id.action_login_to_welcomeLoginFragment, bundle);
                     }));
@@ -176,7 +174,7 @@ public class Login extends Fragment {
                     Log.d(TAG, "onResponse: 登录失败  " + Objects.requireNonNull(response.body()).string());
                     if(response.code() == 400){
                         mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
-                            textViewTitle.setText("输入信息有误");
+                            textViewTitle.setText(R.string.incorrectInputText);
                             textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                             //https://github.com/XC-Qan/WearReX/issues/5
                             ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_pink, null));
@@ -187,7 +185,7 @@ public class Login extends Fragment {
                     }
                     else{
                         mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
-                            textViewTitle.setText("校验失败，请重新登陆");
+                            textViewTitle.setText(R.string.verifyFailed);
                             textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
                             //https://github.com/XC-Qan/WearReX/issues/5
                             ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_pink, null));

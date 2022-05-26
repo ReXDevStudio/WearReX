@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="欢迎使用\nWear Rex"
+            android:text="@string/welcomeUseText"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold"

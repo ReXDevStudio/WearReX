@@ -149,7 +149,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="扫描二维码以注册"
+            android:text="@string/scanQRCodeText"
             android:textColor="#7ECCFE"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
