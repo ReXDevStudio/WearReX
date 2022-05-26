@@ -21,7 +21,7 @@
         <activity
             android:name=".activities.WelcomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.WelcomeScreen">
+            android:theme="@style/Theme.WearReX">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
