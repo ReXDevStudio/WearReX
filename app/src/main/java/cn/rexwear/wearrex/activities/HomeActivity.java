@@ -21,8 +21,8 @@ import java.util.concurrent.Executors;
 import cn.rexwear.wearrex.R;
 import cn.rexwear.wearrex.beans.UserBean;
 import cn.rexwear.wearrex.databinding.ActivityHomeBinding;
+import cn.rexwear.wearrex.managers.UserManager;
 import cn.rexwear.wearrex.utils.NetworkUtils;
-import cn.rexwear.wearrex.utils.SharedPreferencesUtils;
 import cn.rexwear.wearrex.utils.TimeThread;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,8 +41,8 @@ public class HomeActivity extends AppCompatActivity {
         TimeThread timeThread = new TimeThread(binding.hometime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
 
-        if (SharedPreferencesUtils.getUserID() == -1) {       //获取登录状态
-            if (SharedPreferencesUtils.getUserIsExperiment()) {       //获取是否为游客
+        if (UserManager.getUserID() == -1) {       //获取登录状态
+            if (UserManager.getUserIsExperiment()) {       //获取是否为游客
                 String str = this.getString(R.string.currentUserTextWithColons) + this.getString(R.string.touristText);
                 binding.currentUser.setText(str);
                 binding.logout.setText(R.string.loginText);
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         } else {
-            NetworkUtils.getUrl("/users/" + SharedPreferencesUtils.getUserID(), new Callback() {
+            NetworkUtils.getUrl("/users/" + UserManager.getUserID(), new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     Log.d(TAG, "onFailure: " + e.getMessage());
@@ -78,7 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         binding.logout.setOnClickListener(view -> {
-            SharedPreferencesUtils.DeleteUserInfo();      //删除userID
+            UserManager.deleteAllUserInfo();
             startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));        //打开登录activity
             finish();
         });

@@ -1,10 +1,7 @@
 package cn.rexwear.wearrex.utils;
 
-import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import cn.rexwear.wearrex.Application;
 
@@ -21,52 +18,37 @@ public class SharedPreferencesUtils {
     private static final SharedPreferences preferences = Application.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     private static final SharedPreferences.Editor editor = preferences.edit();
 
-    /**
-     * 获取储存在本地的userID
-     */
-    public static int getUserID() {
-        //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return preferences.getInt("userID", -1);
+
+    public static String getString(String key, String defaultValue) {
+        return preferences.getString(key, defaultValue);
     }
 
-    /**
-     * 获取用户是否为游客登录
-     */
-    public static boolean getUserIsExperiment() {
-        //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return preferences.getBoolean("isExperiment", false);
+    public static Integer getInt(String key, Integer defaultValue) {
+        return preferences.getInt(key, defaultValue);
     }
 
-    /**
-     * 将获取到的userID储存在本地
-     */
-    public static void saveUserInfo(int userID) {
-        //SharedPreferences userInfo = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        //SharedPreferences.Editor editor = userInfo.edit();//获取Editor
-        //得到Editor后，写入需要保存的数据
-        editor.putInt("userID", userID);
-        editor.commit();//提交修改
-        Log.i(TAG, "保存用户信息成功");
+    public static Boolean getBoolean(String key, Boolean defaultValue) {
+        return preferences.getBoolean(key, defaultValue);
     }
 
-    /**
-     * 删除储存在本地的userID
-     */
-    public static void DeleteUserInfo() {
-        //SharedPreferences userInfo = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        //SharedPreferences.Editor editor = userInfo.edit();//获取Editor
-        //得到Editor后，写入需要保存的数据
-        editor.remove("userID");
-        editor.remove("isExperiment");
-        editor.commit();//提交修改
+
+    public static void saveString(String key, String value) {
+        editor.putString(key, value);
+        editor.commit();
     }
 
-    /**
-     * 本地设置用户是否为游客登录
-     *
-     */
-    public static void saveUserIsExperiment(boolean bool) {
-        editor.putBoolean("isExperiment", bool);
-        editor.commit();//提交修改
+    public static void saveInt(String key, Integer value) {
+        editor.putInt(key, value);
+        editor.commit();
+    }
+
+    public static void saveBool(String key, Boolean value) {
+        editor.putBoolean(key, value);
+        editor.commit();
+    }
+
+    public static void delete(String key) {
+        editor.remove(key);
+        editor.commit();
     }
 }

@@ -39,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_welcome_login.xml" value="0.7305555555555555" />
         <entry key="app/src/main/res/layout/fragment_welcome_screen.xml" value="0.7333333333333333" />
         <entry key="app/src/main/res/layout/loading_dialog.xml" value="1.5138888888888888" />
+        <entry key="app/src/main/res/layout/node_forum_cell.xml" value="1.878668721516927" />
         <entry key="app/src/main/res/menu/home_nav_menu.xml" value="0.5" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1475" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1475" />
@@ -54,7 +55,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.7333333333333333" />
+        <option name="scale" value="1.878668721516927" />
       </ProjectState>
     </option>
   </component>

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.rexwear.wearrex.R;
-import cn.rexwear.wearrex.utils.SharedPreferencesUtils;
+import cn.rexwear.wearrex.managers.UserManager;
 import cn.rexwear.wearrex.utils.TimeThread;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -22,11 +22,11 @@ public class WelcomeActivity extends AppCompatActivity {
         textViewTime = findViewById(R.id.time);
         TimeThread timeThread = new TimeThread(textViewTime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
-        if (SharedPreferencesUtils.getUserIsExperiment()) {
+        if (UserManager.getUserIsExperiment()) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }
-        if (SharedPreferencesUtils.getUserID() != -1) {
+        if (UserManager.getUserID() != -1) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
             finish();
         }
