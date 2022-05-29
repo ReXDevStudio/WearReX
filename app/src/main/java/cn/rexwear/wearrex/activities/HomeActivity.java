@@ -2,7 +2,6 @@ package cn.rexwear.wearrex.activities;
 
 import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,12 +19,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cn.rexwear.wearrex.R;
+import cn.rexwear.wearrex.adapters.HomeViewPagerAdapter;
 import cn.rexwear.wearrex.beans.NodesBean;
-import cn.rexwear.wearrex.beans.UserBean;
 import cn.rexwear.wearrex.databinding.ActivityHomeBinding;
 import cn.rexwear.wearrex.managers.ForumManager;
-import cn.rexwear.wearrex.managers.UserManager;
-import cn.rexwear.wearrex.utils.NetworkUtils;
 import cn.rexwear.wearrex.utils.TimeThread;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -44,50 +41,9 @@ public class HomeActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(HomeActivity.this, R.layout.activity_home);
         TimeThread timeThread = new TimeThread(binding.hometime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
+        binding.viewPager.setAdapter(new HomeViewPagerAdapter(HomeActivity.this));
 
-        if (UserManager.getUserID() == -1) {       //获取登录状态
-            if (UserManager.getUserIsExperiment()) {       //获取是否为游客
-                String str = this.getString(R.string.currentUserTextWithColons) + this.getString(R.string.touristText);
-                binding.currentUser.setText(str);
-                binding.logout.setText(R.string.loginText);
-            } else {
-                startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));        //打开登录activity
-                finish();
-            }
-        } else {
-            NetworkUtils.getUrl("/me", new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    Log.d(TAG, "onFailure: " + e.getMessage());
-                    mThreadPool.execute(() -> HomeActivity.this.runOnUiThread(() -> Toast.makeText(HomeActivity.this, HomeActivity.this.getString(R.string.failedToFetchUsernameText), Toast.LENGTH_SHORT).show()));
-                }
 
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) {
-                    mThreadPool.execute(() -> HomeActivity.this.runOnUiThread(() -> {
-                        if (response.code() == 200) {
-                            try {
-                                UserBean user = (new Gson()).fromJson(Objects.requireNonNull(response.body()).string(), UserBean.class);
-                                String currentUserName = user.me.username;
-                                String str = HomeActivity.this.getString(R.string.currentUserTextWithColons) + currentUserName;
-                                binding.currentUser.setText(str);
-                                binding.logout.setText(R.string.logout);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            Toast.makeText(HomeActivity.this, R.string.failedToFetchUsernameText, Toast.LENGTH_SHORT).show();
-                        }
-                    }));
-                }
-            });
-        }
-
-        binding.logout.setOnClickListener(view -> {
-            UserManager.deleteAllUserInfo();
-            startActivity(new Intent(HomeActivity.this, WelcomeActivity.class));        //打开登录activity
-            finish();
-        });
         GetAllForums();
     }
 
@@ -99,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
                 mThreadPool.execute(() -> HomeActivity.this.runOnUiThread(() -> {
                     try {
                         NodesBean allNodes = (new Gson()).fromJson(Objects.requireNonNull(response.body()).string(), NodesBean.class);

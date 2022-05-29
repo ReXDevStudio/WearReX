@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Wear ReX</string>
     <string name="loadingText">Loading…</string>
-    <string name="currentUserTextWithColons">Current user:</string>
+    <string name="currentUserTextWithColons">"Current user: "</string>
     <string name="confirmLoginToRexText">Login with ReX ID\nfor the best experience</string>
     <string name="loginText">Login via ReX ID</string>
     <string name="registerText">Register ReX ID</string>
@@ -21,4 +21,6 @@
     <string name="verifyFailed">Verification failed, please log in again</string>
     <string name="loginSuccessful">Login successful</string>
     <string name="incorrectInputText">Incorrect information entered</string>
+    <string name="homePageText">Home</string>
+    <string name="profilePageText">Profile</string>
 </resources>

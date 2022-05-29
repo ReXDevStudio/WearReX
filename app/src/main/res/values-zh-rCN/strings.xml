@@ -22,4 +22,6 @@
     <string name="verifyFailed">校验失败，请重新登录</string>
     <string name="loginSuccessful">登录成功</string>
     <string name="incorrectInputText">用户名或密码错误</string>
+    <string name="homePageText">首页</string>
+    <string name="profilePageText">我的</string>
 </resources>
