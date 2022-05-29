@@ -17,8 +17,10 @@
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1475" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24_pink.xml" value="0.1475" />
+        <entry key="app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.2595" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/ic_outline_forum_24.xml" value="0.2595" />
         <entry key="app/src/main/res/drawable/long_round_btn_light_blue.xml" value="0.276" />
         <entry key="app/src/main/res/drawable/long_round_btn_light_gray.xml" value="0.276" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.6952554744525548" />
@@ -39,7 +41,9 @@
         <entry key="app/src/main/res/layout/fragment_welcome_login.xml" value="0.7305555555555555" />
         <entry key="app/src/main/res/layout/fragment_welcome_screen.xml" value="0.7333333333333333" />
         <entry key="app/src/main/res/layout/loading_dialog.xml" value="1.5138888888888888" />
-        <entry key="app/src/main/res/layout/node_forum_cell.xml" value="1.878668721516927" />
+        <entry key="app/src/main/res/layout/node_category_cell.xml" value="1.2486251831054689" />
+        <entry key="app/src/main/res/layout/node_forum_cell.xml" value="0.9822189331054688" />
+        <entry key="app/src/main/res/layout/node_post_cell.xml" value="0.1" />
         <entry key="app/src/main/res/menu/home_nav_menu.xml" value="0.5" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1475" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1475" />
@@ -55,7 +59,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="1.878668721516927" />
+        <option name="scale" value="1.1125157674153645" />
       </ProjectState>
     </option>
   </component>

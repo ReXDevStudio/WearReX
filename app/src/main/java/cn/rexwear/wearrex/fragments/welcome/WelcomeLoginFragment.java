@@ -59,6 +59,7 @@ public class WelcomeLoginFragment extends Fragment {
 
         go.setOnClickListener(view1 -> {
             UserManager.saveUserInfo(userBean);
+            UserManager.saveUserPassword(requireArguments().getString("password"));
             startActivity(new Intent(getContext(), HomeActivity.class));
             requireActivity().finish();
         });

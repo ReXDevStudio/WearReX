@@ -18,6 +18,8 @@ public class UserBean implements Serializable {
     public Boolean success;
     @SerializedName("user")
     public UserDTO user;
+    @SerializedName("me")
+    public UserDTO me;
 
     public static UserBean objectFromData(String str) {
 

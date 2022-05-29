@@ -1,7 +1,11 @@
 package cn.rexwear.wearrex.managers;
 
 import cn.rexwear.wearrex.beans.UserBean;
+import cn.rexwear.wearrex.utils.NetworkUtils;
 import cn.rexwear.wearrex.utils.SharedPreferencesUtils;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 
 /**
  * Created by XC-Qan on 2022/5/27.
@@ -44,6 +48,18 @@ public class UserManager {
 
     public static void saveUserInfo(UserBean user) {
         SharedPreferencesUtils.saveInt("userID", user.user.userId);
-        //SharedPreferencesUtils.saveString("password", );
+    }
+
+    public static void saveUserPassword(String password) {
+        SharedPreferencesUtils.saveString("password", password);
+    }
+
+
+    public static void login(String username, String password, Callback callback) {
+        RequestBody body = new FormBody.Builder()
+                .add("login", username)
+                .add("password", password)
+                .build();
+        NetworkUtils.postUrl("/auth", body, callback);
     }
 }

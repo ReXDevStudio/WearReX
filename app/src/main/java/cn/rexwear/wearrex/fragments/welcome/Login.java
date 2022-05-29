@@ -28,11 +28,9 @@ import java.util.concurrent.Executors;
 
 import cn.rexwear.wearrex.R;
 import cn.rexwear.wearrex.beans.UserBean;
-import cn.rexwear.wearrex.utils.NetworkUtils;
+import cn.rexwear.wearrex.managers.UserManager;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Login extends Fragment {
@@ -130,18 +128,15 @@ public class Login extends Fragment {
         ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_blue, null));
         textViewTitle.setText(R.string.verifyingText);
 
-        RequestBody body = new FormBody.Builder()
-                .add("login", userName)
-                .add("password", passWord)
-                .build();
 
-        NetworkUtils.postUrl("/auth", body, new Callback() {
+        UserManager.login(userName, passWord, new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.d(TAG, "onFailure: " + e.getMessage());
                 mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
                     textViewTitle.setText(R.string.verifyFailed);
                     textViewTitle.setTextColor(Color.parseColor("#F2B8B5"));
+                    ok.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_pink, null));
                     ok.setEnabled(true);
                     buOK.setEnabled(true);
                     password.setEnabled(true);
@@ -151,14 +146,13 @@ public class Login extends Fragment {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 Log.d(TAG, "onResponse: " + response.code());
-
                 //https://github.com/XC-Qan/WearReX/issues/4
                 if(response.code() == 200){
-                    //Log.d(TAG, "onResponse: " + response.body().string());
                     UserBean user = UserBean.objectFromData(Objects.requireNonNull(response.body()).string());
 
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("userBean", user);
+                    bundle.putString("password", passWord);
                     Log.d(TAG, "onResponse: 登录成功，欢迎" + user.user.username);
 
                     mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
