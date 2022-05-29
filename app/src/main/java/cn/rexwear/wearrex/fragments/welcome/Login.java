@@ -1,6 +1,6 @@
 package cn.rexwear.wearrex.fragments.welcome;
 
-import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
+import static cn.rexwear.wearrex.Application.TAG;
 
 import android.graphics.Color;
 import android.os.Bundle;

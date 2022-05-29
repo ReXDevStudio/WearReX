@@ -1,6 +1,6 @@
 package cn.rexwear.wearrex.activities;
 
-import static cn.rexwear.wearrex.activities.WelcomeActivity.TAG;
+import static cn.rexwear.wearrex.Application.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +23,7 @@ import cn.rexwear.wearrex.adapters.HomeViewPagerAdapter;
 import cn.rexwear.wearrex.beans.NodesBean;
 import cn.rexwear.wearrex.databinding.ActivityHomeBinding;
 import cn.rexwear.wearrex.managers.ForumManager;
-import cn.rexwear.wearrex.utils.TimeThread;
+import cn.rexwear.wearrex.utils.TimeUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(HomeActivity.this, R.layout.activity_home);
-        TimeThread timeThread = new TimeThread(binding.hometime);   //新建一个获取时间的进程
+        TimeUtils timeThread = new TimeUtils(binding.hometime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
         binding.viewPager.setAdapter(new HomeViewPagerAdapter(HomeActivity.this));
 

@@ -23,4 +23,10 @@
     <string name="incorrectInputText">Incorrect information entered</string>
     <string name="homePageText">Home</string>
     <string name="profilePageText">Profile</string>
+    <string name="goodMorningText">Good morning</string>
+    <string name="goodAfternoonText">Good afternoon</string>
+    <string name="goodEveningText">Good evening</string>
+    <string name="goodNightText">Good night</string>
+    <string name="commaText">", "</string>
+    <string name="failedToFetchHitokotoText">Failed to fetch Hotokoto Text</string>
 </resources>

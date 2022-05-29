@@ -66,6 +66,35 @@ public class NetworkUtils {
         client.newCall(request).enqueue(callback);
     }
 
+    /**
+     * GET网络请求
+     *
+     * @param url      url路径
+     * @param callback 网络请求回调
+     */
+    public static void getUrlWithCustomDomain(String url, Callback callback) {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .cookieJar(new CookieJar() {
+                    @Override
+                    public void saveFromResponse(@NonNull HttpUrl httpUrl, @NonNull List<Cookie> list) {
+                        cookieStore.put(httpUrl.host(), list);
+                    }
+
+                    @NonNull
+                    @Override
+                    public List<Cookie> loadForRequest(@NonNull HttpUrl httpUrl) {
+                        List<Cookie> cookies = cookieStore.get(httpUrl.host());
+                        return cookies != null ? cookies : new ArrayList<>();
+                    }
+                })
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
 
     /**
      * Post网络请求
@@ -75,15 +104,40 @@ public class NetworkUtils {
      * @param callback 请求回调
      */
     public static void postUrl(String url, RequestBody body, Callback callback) {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        Request request;
-        request = new Request.Builder()
-                .url(domain + url)
-                .post(body)
-                .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
-                .addHeader("XF-API-Key", "x3KEr7kI-ZOrNOjN46HAkB0oGgqHkXLt")
-                .build();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .cookieJar(new CookieJar() {
+                    @Override
+                    public void saveFromResponse(@NonNull HttpUrl httpUrl, @NonNull List<Cookie> list) {
+                        cookieStore.put(httpUrl.host(), list);
+                    }
 
+                    @NonNull
+                    @Override
+                    public List<Cookie> loadForRequest(@NonNull HttpUrl httpUrl) {
+                        List<Cookie> cookies = cookieStore.get(httpUrl.host());
+                        return cookies != null ? cookies : new ArrayList<>();
+                    }
+                })
+                .build();
+        Request request;
+        if (UserManager.getUserID() != -1) {
+            request = new Request.Builder()
+                    .url(domain + url)
+                    .post(body)
+                    .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
+                    .addHeader("XF-API-Key", "x3KEr7kI-ZOrNOjN46HAkB0oGgqHkXLt")
+                    .addHeader("XF-API-User", String.valueOf(UserManager.getUserID()))
+                    .build();
+        } else {
+            request = new Request.Builder()
+                    .url(domain + url)
+                    .post(body)
+                    .addHeader("User-Agent", "ReXAppAndroid/JavaOkHttpRequested")
+                    .addHeader("XF-API-Key", "x3KEr7kI-ZOrNOjN46HAkB0oGgqHkXLt")
+                    .build();
+        }
         client.newCall(request).enqueue(callback);
     }
+
+
 }

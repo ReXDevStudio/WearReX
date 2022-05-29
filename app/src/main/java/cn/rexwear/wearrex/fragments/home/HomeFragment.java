@@ -29,8 +29,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
-            binding.swipeRefreshLayout.setRefreshing(false);
-        });
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> binding.swipeRefreshLayout.setRefreshing(false));
     }
 }

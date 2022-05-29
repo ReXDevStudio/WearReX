@@ -24,4 +24,9 @@
     <string name="incorrectInputText">用户名或密码错误</string>
     <string name="homePageText">首页</string>
     <string name="profilePageText">我的</string>
+    <string name="goodMorningText">早上好</string>
+    <string name="goodAfternoonText">下午好</string>
+    <string name="goodEveningText">晚上好</string>
+    <string name="goodNightText">晚安</string>
+    <string name="commaText">，</string>
 </resources>

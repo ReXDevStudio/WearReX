@@ -17,6 +17,7 @@ import com.microsoft.appcenter.crashes.Crashes;
  */
 
 public class Application extends android.app.Application {
+    public final static String TAG = "WearReXTAG";
     @SuppressLint("StaticFieldLeak")
     static Context context;
 

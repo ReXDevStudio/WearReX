@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import cn.rexwear.wearrex.R;
 import cn.rexwear.wearrex.managers.UserManager;
-import cn.rexwear.wearrex.utils.TimeThread;
+import cn.rexwear.wearrex.utils.TimeUtils;
+
 
 public class WelcomeActivity extends AppCompatActivity {
-    public final static String TAG = "Wear ReX TAG";
     TextView textViewTime;
 
 
@@ -20,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewTime = findViewById(R.id.time);
-        TimeThread timeThread = new TimeThread(textViewTime);   //新建一个获取时间的进程
+        TimeUtils timeThread = new TimeUtils(textViewTime);   //新建一个获取时间的进程
         timeThread.start();     //开始获取时间
         if (UserManager.getUserIsExperiment()) {
             startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
