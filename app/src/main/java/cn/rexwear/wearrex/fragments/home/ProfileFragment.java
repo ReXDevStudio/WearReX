@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -57,48 +58,17 @@ public class ProfileFragment extends Fragment {
             binding.hitokoto.setText(R.string.loadingText);
             GetHitokoto();
         });
-        if (UserManager.getUserID() == -1) {       //获取登录状态
-            if (UserManager.getUserIsExperiment()) {       //获取是否为游客
-                String str = this.getString(R.string.currentUserTextWithColons) + this.getString(R.string.touristText); //拼接字符串
-                binding.currentUser.setText(str);
-                binding.logout.setText(R.string.loginText);
-                binding.logout.setEnabled(true);
-            } else {
-                startActivity(new Intent(requireActivity(), WelcomeActivity.class));        //打开登录activity
-                requireActivity().finish();
-            }
-        } else {
-            NetworkUtils.getUrl("/me", new Callback() {
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    Log.d(TAG, "onFailure: " + e.getMessage());
-                    mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> Toast.makeText(requireActivity(), requireActivity().getString(R.string.failedToFetchUsernameText), Toast.LENGTH_SHORT).show()));    //失败报错Toast
-                }
-
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) {
-                    mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
-                        if (response.code() == 200) {
-                            try {
-                                UserBean user = (new Gson()).fromJson(Objects.requireNonNull(response.body()).string(), UserBean.class);    //获取User实体类
-                                String currentUserName = user.me.username;
-                                String str = TimeUtils.getGreeting() + getString(R.string.commaText) + currentUserName;     //拼接字符串
-                                Glide.with(view).load(Uri.parse(user.me.avatarUrls.getH())).circleCrop().placeholder(R.drawable.ic_baseline_account_circle_24).into(binding.avatarImageView);       //加载头像
-                                binding.currentUser.setText(str);
-                                binding.logout.setText(R.string.logout);
-                                binding.logout.setEnabled(true);
-                                GetHitokoto();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            Toast.makeText(requireActivity(), R.string.failedToFetchUsernameText, Toast.LENGTH_SHORT).show();       //失败
-                        }
-                    }));
-                }
-            });
-        }
-
+        RefreshLogin();
+        binding.avatarImageView.setOnClickListener(view1 -> {
+            binding.avatarImageView.setEnabled(false);
+            binding.avatarImageView.setImageResource(R.drawable.ic_baseline_account_circle_24);
+            binding.logout.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.long_round_btn_light_blue, null));
+            binding.logout.setEnabled(false);
+            binding.hitokoto.setText("");
+            binding.currentUser.setText(R.string.loadingText);
+            binding.logout.setText(R.string.loadingText);
+            RefreshLogin();
+        });
         binding.logout.setOnClickListener(view1 -> {
             UserManager.deleteAllUserInfo();
             startActivity(new Intent(requireActivity(), WelcomeActivity.class));        //打开登录activity
@@ -119,5 +89,61 @@ public class ProfileFragment extends Fragment {
                 mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> binding.hitokoto.setText(str)));
             }
         });
+    }
+
+    void RefreshLogin() {
+        Log.d(TAG, "RefreshLogin: Refreshing...");
+        if (UserManager.getUserID() == -1) {       //获取登录状态
+            if (UserManager.getUserIsExperiment()) {       //获取是否为游客
+                String str = this.getString(R.string.currentUserTextWithColons) + this.getString(R.string.touristText); //拼接字符串
+                binding.currentUser.setText(str);
+                binding.logout.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.long_round_btn_light_blue, null));
+                binding.logout.setText(R.string.loginText);
+                binding.logout.setEnabled(true);
+                binding.avatarImageView.setEnabled(true);
+            } else {
+                startActivity(new Intent(requireActivity(), WelcomeActivity.class));        //打开登录activity
+                requireActivity().finish();
+            }
+        } else {
+            NetworkUtils.getUrl("/me", new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    Log.d(TAG, "onFailure: " + e.getMessage());
+                    mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
+                        binding.currentUser.setText(R.string.failedToFetchUsernameText);
+                        binding.logout.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_pink, null));
+                        binding.logout.setEnabled(true);
+                        binding.logout.setText(R.string.failedToFetchUsernameText);
+                        binding.avatarImageView.setEnabled(true);
+                    }));
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) {
+                    mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> {
+                        binding.avatarImageView.setEnabled(true);
+                        if (response.code() == 200) {
+                            try {
+                                UserBean user = (new Gson()).fromJson(Objects.requireNonNull(response.body()).string(), UserBean.class);    //获取User实体类
+                                String currentUserName = user.me.username;
+                                String str = TimeUtils.getGreeting() + getString(R.string.commaText) + currentUserName;     //拼接字符串
+                                Glide.with(requireView()).load(Uri.parse(user.me.avatarUrls.getH())).circleCrop().placeholder(R.drawable.ic_baseline_account_circle_24).into(binding.avatarImageView);       //加载头像
+                                binding.currentUser.setText(str);
+                                binding.logout.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.btn_round_light_pink, null));
+
+                                binding.logout.setText(R.string.logout);
+                                binding.logout.setEnabled(true);
+                                GetHitokoto();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(requireActivity(), R.string.failedToFetchUsernameText, Toast.LENGTH_SHORT).show();       //失败
+                        }
+                    }));
+                }
+            });
+        }
     }
 }

@@ -76,7 +76,6 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="2dp"
                     android:alpha="0.9"
-                    android:autoText="false"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:textColor="#fff"
@@ -87,14 +86,20 @@
 
                 <Button
                     android:id="@+id/logout"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:enabled="true"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_round_light_blue"
+                    android:enabled="false"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/loadingText" />
+                    android:minWidth="149dp"
+                    android:minHeight="52dp"
+                    android:text="@string/loadingText"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

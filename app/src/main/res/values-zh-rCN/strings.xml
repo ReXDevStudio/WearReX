@@ -14,7 +14,7 @@
     <string name="welcomeUseText">欢迎来到\nWear ReX</string>
     <string name="touristText">游客</string>
     <string name="logout">登出</string>
-    <string name="failedToFetchUsernameText">获取用户名失败</string>
+    <string name="failedToFetchUsernameText">获取用户信息失败</string>
     <string name="enterPasswordText">输入密码</string>
     <string name="caseSensitiveText">大小写敏感</string>
     <string name="fillTheInfosCorrectlyText">请正确输入用户名和密码</string>
@@ -29,4 +29,5 @@
     <string name="goodEveningText">晚上好</string>
     <string name="goodNightText">晚安</string>
     <string name="commaText">，</string>
+    <string name="failedToFetchHitokotoText">获取「一言」失败</string>
 </resources>
