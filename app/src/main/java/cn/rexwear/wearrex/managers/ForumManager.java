@@ -20,11 +20,26 @@ public class ForumManager {
         NetworkUtils.getUrl("/nodes/flattened", callback);
     }
 
+    public static void getAllThreadByForum(int forumID, Callback callback) {
+        NetworkUtils.getUrl("/forums/" + forumID + "/threads", callback);
+    }
+
     public static List<NodesBean.NodesFlatDTO.NodeDTO> getAllNodesByDepth(NodesBean nodesBean, int depth) {
         List<NodesBean.NodesFlatDTO.NodeDTO> tempList = new ArrayList<>();
         for (NodesBean.NodesFlatDTO nodeFlat :
                 nodesBean.nodesFlat) {
             if (nodeFlat.depth == depth) {
+                tempList.add(nodeFlat.node);
+            }
+        }
+        return tempList;
+    }
+
+    public static List<NodesBean.NodesFlatDTO.NodeDTO> getAllNodesByParentNode(NodesBean nodesBean, int parenNodeID) {
+        List<NodesBean.NodesFlatDTO.NodeDTO> tempList = new ArrayList<>();
+        for (NodesBean.NodesFlatDTO nodeFlat :
+                nodesBean.nodesFlat) {
+            if (nodeFlat.node.parentNodeId == parenNodeID) {
                 tempList.add(nodeFlat.node);
             }
         }

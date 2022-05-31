@@ -81,8 +81,7 @@
                     android:textColor="#fff"
                     android:textSize="12sp"
                     app:autoSizeMaxTextSize="14sp"
-                    app:autoSizeMinTextSize="10sp"
-                    app:autoSizeTextType="uniform" />
+                    app:autoSizeMinTextSize="10sp" />
 
                 <Button
                     android:id="@+id/logout"

@@ -80,7 +80,8 @@ public class ProfileFragment extends Fragment {
         NetworkUtils.getUrlWithCustomDomain("https://v1.hitokoto.cn?encode=text&c=d&c=i&c=k", new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Toast.makeText(requireActivity(), R.string.failedToFetchHitokotoText, Toast.LENGTH_SHORT).show();       //失败
+                mThreadPool.execute(() -> requireActivity().runOnUiThread(() -> Toast.makeText(requireActivity(), R.string.failedToFetchHitokotoText, Toast.LENGTH_SHORT).show()));
+
             }
 
             @Override

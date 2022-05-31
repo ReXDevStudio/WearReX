@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,25 +17,6 @@ import cn.rexwear.wearrex.R;
 
 public class TimeUtils extends Thread {
     public TextView tvDate;
-
-    public TimeUtils(TextView tvDate) {
-        this.tvDate = tvDate;
-    }
-
-    @Override
-    public void run() {
-        do {
-            try {
-                Thread.sleep(1000);
-                Message msg = new Message();
-                msg.what = 22;
-                mHandler.sendMessage(msg);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (true);
-    }
-
     @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
@@ -51,16 +31,16 @@ public class TimeUtils extends Thread {
         }
     };
 
+    public TimeUtils(TextView tvDate) {
+        this.tvDate = tvDate;
+    }
+
     public static String getGreeting() {
         int currentHour;
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalDateTime localDateTime = LocalDateTime.now();
-            currentHour = localDateTime.getHour();
-        } else {
-            Calendar calendar = Calendar.getInstance();
-            currentHour = calendar.get(Calendar.HOUR);
-        }
+        Calendar calendar = Calendar.getInstance();
+        currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+
         Log.d(TAG, "getGreeting: " + currentHour);
         if (currentHour > 5 && currentHour < 12) {
             return Application.getContext().getString(R.string.goodMorningText);
@@ -70,5 +50,19 @@ public class TimeUtils extends Thread {
             return Application.getContext().getString(R.string.goodEveningText);
         }
         return Application.getContext().getString(R.string.goodNightText);
+    }
+
+    @Override
+    public void run() {
+        do {
+            try {
+                Thread.sleep(1000);
+                Message msg = new Message();
+                msg.what = 22;
+                mHandler.sendMessage(msg);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (true);
     }
 }

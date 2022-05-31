@@ -1,5 +1,6 @@
 package cn.rexwear.wearrex.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Objects;
 
+import cn.rexwear.wearrex.Application;
 import cn.rexwear.wearrex.R;
+import cn.rexwear.wearrex.activities.ForumDetailActivity;
+import cn.rexwear.wearrex.activities.NodeDetailActivity;
 import cn.rexwear.wearrex.beans.NodesBean;
 
 /**
@@ -61,10 +65,24 @@ public class HomePageForumListAdapter extends ListAdapter {
 
         if (holder instanceof CategoryViewHolder) {
             ((CategoryViewHolder) holder).categoryName.setText(node.title);
+            holder.itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(Application.getContext(), NodeDetailActivity.class);
+                intent.putExtra("parentNodeID", node.nodeId);
+                intent.putExtra("parentNodeName", node.title);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Application.getContext().startActivity(intent);
+            });
         }
         if (holder instanceof ForumViewHolder) {
             ((ForumViewHolder) holder).forumName.setText(node.title);
             ((ForumViewHolder) holder).forumDescription.setText(node.description);
+            holder.itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(Application.getContext(), ForumDetailActivity.class);
+                intent.putExtra("forumID", node.nodeId);
+                intent.putExtra("forumName", node.title);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Application.getContext().startActivity(intent);
+            });
         }
     }
 
@@ -73,8 +91,8 @@ public class HomePageForumListAdapter extends ListAdapter {
 
         public ForumViewHolder(@NonNull View itemView) {
             super(itemView);
-            forumName = itemView.findViewById(R.id.nodeTitle);
-            forumDescription = itemView.findViewById(R.id.nodeDescription);
+            forumName = itemView.findViewById(R.id.threadTitle);
+            forumDescription = itemView.findViewById(R.id.postUser);
         }
     }
 
@@ -83,7 +101,7 @@ public class HomePageForumListAdapter extends ListAdapter {
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            categoryName = itemView.findViewById(R.id.nodeTitle);
+            categoryName = itemView.findViewById(R.id.threadTitle);
         }
     }
 }
