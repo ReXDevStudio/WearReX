@@ -38,15 +38,14 @@ public class TimeUtils extends Thread {
     public static String getGreeting() {
         int currentHour;
 
-        Calendar calendar = Calendar.getInstance();
-        currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+        currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
         Log.d(TAG, "getGreeting: " + currentHour);
-        if (currentHour > 5 && currentHour < 12) {
+        if (currentHour >= 5 && currentHour < 12) {
             return Application.getContext().getString(R.string.goodMorningText);
-        } else if (currentHour > 12 && currentHour < 18) {
+        } else if (currentHour >= 12 && currentHour < 18) {
             return Application.getContext().getString(R.string.goodAfternoonText);
-        } else if (currentHour > 18 && currentHour < 23) {
+        } else if (currentHour >= 18 && currentHour < 23) {
             return Application.getContext().getString(R.string.goodEveningText);
         }
         return Application.getContext().getString(R.string.goodNightText);
